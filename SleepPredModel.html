@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Prediction Application</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+        }
+        .input-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: inline-block;
+            text-align: left;
+            margin: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 200px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #resultThingy {
+            margin-top: 20px;
+        }
+        .marquee {
+            color: #666;
+            font-size: 18px;
+            margin-top: 30px;
+        }
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Prediction of the State of Mind based on the Sleep Schedule</h1>
+    <img src="https://i.pinimg.com/564x/2a/f4/ec/2af4ecaa691c44c9176c161a0b1ad064.jpg" alt="Sleep Prediction Image">
+    <div class="input-container">
+        <p>
+            <b>Enter BEDTIME: <input type="text" id="bedtime"></b> <br/><br/>
+            <b>Enter QUALITY OF SLEEP: <input type="text" id="quality"></b> <br/><br/>
+            <b>Enter PRE-BED TECH USE (Yes/No): <input type="text" id="prebedtech"></b> <br/><br/>
+            <b>Enter WAKEUP TIME: <input type="text" id="Wakeup"></b> <br/><br/>
+            <button id="submitButton">Submit Data</button> <br/>
+            <div id="resultThingy"></div>
+        </p>
+    </div>
+    <div class="marquee">
+        <span>Thank you for using Prediction Application.</span>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            console.log("Hello All! Website is Loaded!");
+    
+            $("#submitButton").click(function(){
+                var bedtime = $("#bedtime").val();
+                var quality = $("#quality").val();
+                var prebedtech = $("#prebedtech").val();
+                var Wakeup = $("#Wakeup").val();
+    
+                console.log("VALUES ARE: ", bedtime, quality, prebedtech, Wakeup)
+    
+                var settings = {
+                    "url": "http://127.0.0.1:8000/mood/predict",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify({
+                        "bed_time": bedtime, // Updated keys
+                        "quali_ty": quality,
+                        "prebed_tech": prebedtech,
+                        "Wake_up": Wakeup
+                    }),
+                };
+    
+                $.ajax(settings).done(function (response) {
+                    $("#resultThingy").html(response);
+                });
+            });
+    
+        });
+    </script>
+    
+</body>
+</html>
+
