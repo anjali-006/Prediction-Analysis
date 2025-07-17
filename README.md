@@ -1,10 +1,10 @@
-# 🌙 Sleep-Based Mood Prediction App
+#  Sleep-Based Mood Prediction App
 
 This project is a **machine learning-powered web app** that predicts your **mood** based on your **sleep habits** using a trained **K-Nearest Neighbors (KNN)** model with a **Flask** backend and a simple **HTML + jQuery** frontend.
 
 ---
 
-## 🔮 Features
+##  Features
 
 - Predicts mood states: `HAPPY`, `JOYFUL`, `PEACEFUL`, or `SLEEPY`
 - Input fields for:
@@ -17,7 +17,7 @@ This project is a **machine learning-powered web app** that predicts your **mood
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Python 3**
 - **Flask**
@@ -27,7 +27,7 @@ This project is a **machine learning-powered web app** that predicts your **mood
 
 ---
 
-## 🧠 Model Info
+##  Model Info
 
 - Algorithm: **K-Nearest Neighbors**
 - Input Features:
